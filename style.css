@@ -1,0 +1,394 @@
+/*
+Theme Name: ATX GD Theme
+Text Domain: atxgdtheme
+Version: 0.811
+Description: ATX Game Designers static site theme.
+Tags: static, website
+Author: Andrew Jonhardt
+Author URI: https://github.com/AndrewJDGalga
+*/
+
+:root {
+    /*base 3 colors*/
+    --light-blue: #DAE6ED;
+    --dark-green: #249245;
+    --deep-blue: #18244D;
+    /*complements --lightblue*/
+    --clear-sky-blue: #2BB1FF;
+    --faded-blue: #0F91DB;
+    --mud-brown: #8F5200;
+    --dune-brown: #DB840F;
+    /*complements --dark-green*/
+    --sharp-green: #2BFF6B;
+    --dim-green: #0FDB4D;
+    --dull-red: #8F0100;
+    --wildflower-red: #DB110F;
+    /*complements --deep-blue*/
+    --pool-blue: #2B5DFF;
+    --fading-day-blue: #0F3FDB;
+    --dull-gold: #8F6800;
+    --off-gold: #DBA40F;
+
+    --shadow-grey: #2d2d2d;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "bilo", serif;
+    font-style: normal;
+    font-weight: 400;
+    min-height: 100%;
+    color: var(--deep-blue);
+    margin: 0; /*removing an automatic 8px margin*/
+    display: flex;
+    flex-direction: column;
+}
+
+.header-backing-img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    min-height: 8em;
+    z-index: -1;
+}
+
+.header-group-name {
+    position: relative;
+    width: 30%;
+    height: auto;
+}
+
+.header-main {
+    font-family: "hightower-text", serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.logo-nav-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*WP dynamic menu automatic ul container*/
+.wp-nav-ul {
+    list-style: none;
+    display: flex;
+    position: relative;
+    width: auto; 
+    height: 10%; 
+    gap: 48px;
+    left: -2vw;
+    top: 2vh;
+    list-style-type: none;
+}
+
+/*Squishing too much styling into 1 selector because Wordpress*/
+.wp-nav-ul li a {
+    text-decoration: none;
+    display: inline-block;
+    color: var(--light-blue);
+    background-color: var(--deep-blue);
+    padding: 4px;
+    filter: drop-shadow(5px 5px 5px var(--shadow-grey));
+    box-shadow: inset 0.1em 0.1em 0.1em 0 var(--light-blue), inset -0.1em -0.1em 0.1em 0 var(--shadow-grey);
+}
+
+.wp-nav-ul li a:hover {
+    color: var(--mud-brown);
+    background-color: var(--clear-sky-blue);
+}
+
+.wp-nav-ul .special-link a {
+    color: var(--dune-brown);
+}
+
+.wp-nav-ul .current-menu-item a {
+    color: var(--deep-blue);
+    background-color: var(--dark-green);
+}
+
+.theme-footer {
+    width: 100%;
+    height: 10vh;
+    margin-top: auto;
+}
+
+.high-center-wave {
+    position: absolute;
+    width: 100%;
+    height: 10vh;
+    min-height: 36px;
+    background-color: var(--deep-blue);
+    border-top-left-radius: 150% 300%;
+    border-top-right-radius: 150% 300%;
+}
+
+.icon-container {
+    display: flex;
+    width: 100%;
+    height: 8vh;
+    margin-top: 2vmin;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+    overflow-y: hidden;
+}
+
+.facebook-svg,
+.discord-svg {
+    width: 3vmax;
+    height: 3vmax;
+}
+
+.meetup-svg {
+    margin-top: 8px;
+    margin-left: 1vw; /*icon has odd right-side spacing*/
+    width: 4vmax;
+    height: 4vmax;
+    overflow-y: hidden;
+}
+
+
+@media screen and (min-width: 720px) {
+    .wp-nav-ul .current-menu-item a::before {
+        content: "";
+        position: absolute;
+        display: block;
+        background-image: url('./assets/banner/meeple_green.svg');
+        background-repeat: no-repeat;
+        width: 3vmax;
+        height: 3vmax;
+        top: -2.5vmax;
+    }
+
+    article {
+        margin: 6vmax 6vmax 0 6vmax;
+    }
+    
+}
+
+@media screen and (max-width: 720px) {
+    .wp-nav-ul {
+        top: 0;
+    }
+
+    article {
+        margin: 0;
+    }
+}
+
+/*Class to assign for link coloring. 
+Set by directly editing HTML. 
+Don't currently wish to target all a elements*/
+.embedded-external-link {
+    background-color: var(--dark-green);
+    color: var(--light-blue);
+    text-decoration: none;
+    width: max-content;
+    padding: 2px;
+}
+
+/*assign to quotes on page*/
+.page-quote {
+    font-family: "bilo", serif;
+    font-weight: 400;
+    font-style: italic;
+    background-color: var(--light-blue);
+}
+
+/*Some Wordpress blocks will have flex automatically assigned but won't center elements. May manually assign this.*/
+.wp-flex-center {
+    align-self: center;
+    justify-self: center;
+}
+
+/*_________________________________________________________________________________________
+Published games list styling
+*/
+/*group for game title and author*/
+.published-game_attribution {
+    background-color: var(--deep-blue);
+    color: var(--dune-brown);
+    padding: 4px;
+}
+
+.published-game_image {
+    height: auto;
+    border: 6px solid var(--light-blue);
+}
+
+/*container for entire object*/
+@media screen and (min-width: 832px) {
+    .published-game_container.published-desktop {
+        display: block;
+        margin-top: 6vmax;
+        margin-bottom: 6vmax;
+    }
+
+    
+    .published-game_attribution {
+        width: max-content;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .published-game_details {
+        width: auto;
+        height: 24vmax;
+    }
+
+    .published-game_image {
+        width: 30%;
+        float: left;
+    }
+    .published-game_blurb {
+        width: 50%;
+        float: right;
+    }
+
+    .published-game_container.published-mobile {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 832px) {
+    .published-game_container.published-desktop {
+        display: none;
+    }
+
+    .published-game_container.published-mobile {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 8vmax;
+    }
+
+    .published-game_attribution {
+        width: 100%;
+    }
+
+    .published-game_image {
+        width: 30%;
+        height: auto;
+    }
+}
+
+/*_________________________________________________________________________*/
+/*Pretty Google Cal plugin styling*/
+/*applied to left-right nav and list view buttons*/
+.fc .fc-button-group>.fc-button {
+    background-color: var(--deep-blue);
+    color: var(--light-blue);
+    border-radius: 0;
+    box-shadow: inset 0.1em 0.1em 0.1em 0 var(--light-blue), inset -0.1em -0.1em 0.1em 0 var(--shadow-grey);
+}
+.fc .fc-button-group>.fc-button:hover {
+    background-color: var(--clear-sky-blue);
+}
+
+/*applied to selected view button*/
+.fc .fc-button-group>.fc-button.fc-button-primary.fc-button-active:not(:disabled) {
+    background-color: var(--dark-green);
+    color: var(--light-blue);
+}
+.fc .fc-button-group>.fc-button.fc-button-primary.fc-button-active:not(:disabled):hover {
+    background-color: var(--clear-sky-blue);
+}
+
+/*disabled buttons*/
+.fc .fc-button.fc-button-primary:disabled, .fc .fc-button:disabled {
+    background-color: var(--shadow-grey);
+    color: var(--light-blue);
+    border-radius: 0;
+}
+
+/*today button*/
+.fc .fc-button.fc-button-primary:not(:disabled) {
+    background-color: var(--deep-blue);
+    color: var(--light-blue);
+    border-radius: 0;
+    box-shadow: inset 0.1em 0.1em 0.1em 0 var(--light-blue), inset -0.1em -0.1em 0.1em 0 var(--shadow-grey);
+}
+.fc .fc-button.fc-button-primary:not(:disabled):hover {
+    background-color: var(--clear-sky-blue);
+}
+
+/*events on calendar*/
+.fc-daygrid-event.fc-daygrid-block-event.fc-h-event {
+    border-radius: 0;
+    background-color: var(--dark-green);
+    color: var(--light-blue);
+}
+
+/*today*/
+.fc .fc-daygrid-day.fc-day.fc-day-today {
+    background-color: rgb(219 132 15 / 70%);
+}
+
+/*targetting event popup*/
+[id^="tippy-"] .tippy-content {
+    color: var(--deep-blue);
+}
+
+.toolloc>.button {
+    text-decoration: none;
+    background-color: var(--dark-green);
+    box-shadow: inset 0.1em 0.1em 0.1em 0 var(--light-blue), inset -0.1em -0.1em 0.1em 0 var(--shadow-grey);
+    color: var(--deep-blue);
+    padding: 2px;
+}
+
+/*___________________________________________
+Carousel*/
+
+/*container*/
+.metaslider .flexslider {
+    width: 65%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.metaslider div.caption-wrap {
+    background-color: var(--deep-blue);
+    width: 70%;
+    padding: 2px;
+}
+
+.metaslider .caption-wrap>.caption {
+    color: var(--light-blue);
+    width: 100%;
+    font-size: larger;
+}
+
+/*image*/
+.metaslider .flexslider .slides .ms-image>img {
+    width: 50%;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/*nav buttons*/
+.metaslider .flexslider .flex-control-nav a {
+    position: relative;
+    top: 8px;
+    background-color: var(--deep-blue);
+    border-radius: 100%;
+    width: 6vmin;
+    height: 6vmin;
+    filter: drop-shadow(5px 5px 5px var(--shadow-grey));
+}
+
+.metaslider .flex-control-paging li a.flex-active {
+    background-color: var(--dark-green);
+    top: 16px;
+}
