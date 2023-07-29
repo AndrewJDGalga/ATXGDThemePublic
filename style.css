@@ -1,7 +1,7 @@
 /*
 Theme Name: ATX GD Theme
 Text Domain: atxgdtheme
-Version: 0.811
+Version: 2.2
 Description: ATX Game Designers static site theme.
 Tags: static, website
 Author: Andrew Jonhardt
@@ -28,7 +28,7 @@ Author URI: https://github.com/AndrewJDGalga
     --fading-day-blue: #0F3FDB;
     --dull-gold: #8F6800;
     --off-gold: #DBA40F;
-
+    /*extra shading*/
     --shadow-grey: #2d2d2d;
 }
 
@@ -40,158 +40,193 @@ body {
     font-family: "bilo", serif;
     font-style: normal;
     font-weight: 400;
-    min-height: 100%;
+    min-height: 100vh;
     color: var(--deep-blue);
-    margin: 0; /*removing an automatic 8px margin*/
+    margin: 0;
     display: flex;
     flex-direction: column;
 }
 
-.header-backing-img {
-    position: absolute;
-    width: 100%;
-    height: auto;
-    min-height: 8em;
-    z-index: -1;
-}
-
-.header-group-name {
-    position: relative;
-    width: 30%;
-    height: auto;
-}
-
-.header-main {
+.atxgd-header {
     font-family: "hightower-text", serif;
     font-style: normal;
     font-weight: 400;
 }
 
-.logo-nav-wrapper {
-    position: relative;
-    display: flex;
+.header_logo {
     width: 100%;
-    flex-direction: column;
-    align-items: center;
+    min-height: 64px;
 }
 
-/*WP dynamic menu automatic ul container*/
-.wp-nav-ul {
-    list-style: none;
-    display: flex;
+.header_backing-image {
+    text-align: center;
+    background-color: var(--fading-day-blue);
+    background-image: url('./assets/banner/ATX-GD-Web-banner-photo-onlyCrop1.webp');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 100%;
+    padding-bottom: 6%;
+}
+
+.header_home-wrapper > img {
+    width: 30%;
+    height: auto;
+}
+
+.header_nav>ul {
     position: relative;
-    width: auto; 
-    height: 10%; 
-    gap: 48px;
-    left: -2vw;
-    top: 2vh;
-    list-style-type: none;
+    display: flex;
+    gap: 4%;
+    top: -48px;
+    justify-content: center;
+    align-content: center;
+    list-style: none;
 }
 
-/*Squishing too much styling into 1 selector because Wordpress*/
-.wp-nav-ul li a {
+/*drill down automatically generated nav menus*/
+.header_nav>ul>li>a{
     text-decoration: none;
-    display: inline-block;
     color: var(--light-blue);
     background-color: var(--deep-blue);
     padding: 4px;
     filter: drop-shadow(5px 5px 5px var(--shadow-grey));
     box-shadow: inset 0.1em 0.1em 0.1em 0 var(--light-blue), inset -0.1em -0.1em 0.1em 0 var(--shadow-grey);
 }
-
-.wp-nav-ul li a:hover {
+.header_nav>ul>li>a:hover {
     color: var(--mud-brown);
     background-color: var(--clear-sky-blue);
 }
 
-.wp-nav-ul .special-link a {
+.header_nav>ul>.special-link>a {
     color: var(--dune-brown);
 }
 
-.wp-nav-ul .current-menu-item a {
+.header_nav>ul>.current-menu-item>a {
     color: var(--deep-blue);
     background-color: var(--dark-green);
 }
 
-.theme-footer {
-    width: 100%;
-    height: 10vh;
+/*center nav menu*/
+.header_nav>ul:first-child {
+    padding-left: 0;
+}
+
+.atxgd-footer {
     margin-top: auto;
 }
 
-.high-center-wave {
-    position: absolute;
+.icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4%;
+    height: 4vmax;
     width: 100%;
-    height: 10vh;
-    min-height: 36px;
+    overflow-y: hidden;
+} 
+
+.facebook-svg,
+.meetup-svg {
+    margin-top: -4px;
+    margin-bottom: -4px;
+}
+
+.facebook-svg {
+    width: 32px;
+    height: 32px;
+}
+.meetup-svg {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    top: 6px;
+}
+
+.high-center-wave {
     background-color: var(--deep-blue);
     border-top-left-radius: 150% 300%;
     border-top-right-radius: 150% 300%;
-}
-
-.icon-container {
-    display: flex;
+    height: 100%;
     width: 100%;
-    height: 8vh;
-    margin-top: 2vmin;
-    align-items: center;
-    justify-content: center;
-    gap: 10%;
-    overflow-y: hidden;
 }
 
-.facebook-svg,
-.discord-svg {
+/*meeple*/
+.wp-nav-ul .current-menu-item a::before {
+    content: "";
+    position: absolute;
+    display: block;
+    background-image: url('./assets/banner/meeple_green.svg');
+    background-repeat: no-repeat;
     width: 3vmax;
     height: 3vmax;
+    top: -2.5vmax;
 }
 
-.meetup-svg {
-    margin-top: 8px;
-    margin-left: 1vw; /*icon has odd right-side spacing*/
-    width: 4vmax;
-    height: 4vmax;
-    overflow-y: hidden;
-}
-
-
-@media screen and (min-width: 720px) {
-    .wp-nav-ul .current-menu-item a::before {
-        content: "";
-        position: absolute;
-        display: block;
-        background-image: url('./assets/banner/meeple_green.svg');
-        background-repeat: no-repeat;
-        width: 3vmax;
-        height: 3vmax;
-        top: -2.5vmax;
-    }
-
-    article {
-        margin: 6vmax 6vmax 0 6vmax;
-    }
-    
+.atxgd-content {
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
 @media screen and (max-width: 720px) {
-    .wp-nav-ul {
-        top: 0;
+    .wp-nav-ul .current-menu-item a::before {
+        display: none;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .header_backing-image {
+        background-size: cover;
+    }
+}
+
+@media screen and (max-width: 590px),
+screen and (orientation: portrait)
+{
+    .header_backing-image {
+        text-align: left;
+    }
+    .header_nav>ul {
+        justify-content: left;
+    }
+    .high-center-wave {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .icon-container {
+        justify-content: left;
+    }
+}
+
+@media screen and (min-width: 1080px)
+{
+    body {
+        width: 1080px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    article {
-        margin: 0;
+    .atxgd-content {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .wp-nav-ul .current-menu-item a::before {
+        width: 32px;
+        height: 32px;
+        top: -27px;
     }
 }
 
 /*Class to assign for link coloring. 
 Set by directly editing HTML. 
 Don't currently wish to target all a elements*/
-.embedded-external-link {
+.embedded-external-link>a {
     background-color: var(--dark-green);
     color: var(--light-blue);
     text-decoration: none;
     width: max-content;
-    padding: 2px;
+    padding: 3px;
 }
 
 /*assign to quotes on page*/
@@ -209,8 +244,7 @@ Don't currently wish to target all a elements*/
 }
 
 /*_________________________________________________________________________________________
-Published games list styling
-*/
+Published games list styling */
 /*group for game title and author*/
 .published-game_attribution {
     background-color: var(--deep-blue);
@@ -218,66 +252,25 @@ Published games list styling
     padding: 4px;
 }
 
-.published-game_image {
+.published-game_container.published-desktop {
+    display: none;
+}
+
+.published-game_container.published-mobile {
+    display: block;
+    width: 100%;
     height: auto;
-    border: 6px solid var(--light-blue);
+    margin-bottom: 8vmax;
 }
 
-/*container for entire object*/
-@media screen and (min-width: 832px) {
-    .published-game_container.published-desktop {
-        display: block;
-        margin-top: 6vmax;
-        margin-bottom: 6vmax;
-    }
-
-    
-    .published-game_attribution {
-        width: max-content;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .published-game_details {
-        width: auto;
-        height: 24vmax;
-    }
-
-    .published-game_image {
-        width: 30%;
-        float: left;
-    }
-    .published-game_blurb {
-        width: 50%;
-        float: right;
-    }
-
-    .published-game_container.published-mobile {
-        display: none;
-    }
+.published-game_attribution {
+    width: 100%;
 }
 
-@media screen and (max-width: 832px) {
-    .published-game_container.published-desktop {
-        display: none;
-    }
-
-    .published-game_container.published-mobile {
-        display: block;
-        width: 100%;
-        height: auto;
-        margin-bottom: 8vmax;
-    }
-
-    .published-game_attribution {
-        width: 100%;
-    }
-
-    .published-game_image {
-        width: 30%;
-        height: auto;
-    }
+.published-game_image {
+    width: 50%;
+    height: auto;
+    border: 6px solid var(--deep-blue);
 }
 
 /*_________________________________________________________________________*/
@@ -347,48 +340,46 @@ Published games list styling
 
 /*___________________________________________
 Carousel*/
-
-/*container*/
-.metaslider .flexslider {
-    width: 65%;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+div.carousel-slider {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.metaslider div.caption-wrap {
+/*_________________________________________
+WP Forms*/
+/*labels*/
+.wpforms-container .wpforms-field .wpforms-field-label {
+    color: var(--deep-blue);
+    font-family: "bilo", serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+/*submit button*/
+button[type=submit].wpforms-submit {
     background-color: var(--deep-blue);
-    width: 70%;
-    padding: 2px;
-}
-
-.metaslider .caption-wrap>.caption {
     color: var(--light-blue);
-    width: 100%;
-    font-size: larger;
+    width: 5em;
+    height: 2em;
+    border-radius: 20%;
+    font-family: "bilo", serif;
+    font-weight: 550;
+    font-style: normal;
+    box-shadow: inset 0.1em 0.1em 0.1em 0 var(--light-blue), inset -0.1em -0.1em 0.1em 0 var(--shadow-grey);
+}
+button[type=submit].wpforms-submit:hover {
+    background-color: var(--clear-sky-blue);
+    color: var(--mud-brown);
+    cursor: pointer;
 }
 
-/*image*/
-.metaslider .flexslider .slides .ms-image>img {
-    width: 50%;
-    height: auto;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+/*Input fields, very general for now*/
+input[type=text],
+input[type=email],
+textarea
+ {
+    background-color: var(--light-blue);
+    border: 4px solid var(--deep-blue);
 }
 
-/*nav buttons*/
-.metaslider .flexslider .flex-control-nav a {
-    position: relative;
-    top: 8px;
-    background-color: var(--deep-blue);
-    border-radius: 100%;
-    width: 6vmin;
-    height: 6vmin;
-    filter: drop-shadow(5px 5px 5px var(--shadow-grey));
-}
-
-.metaslider .flex-control-paging li a.flex-active {
-    background-color: var(--dark-green);
-    top: 16px;
-}
