@@ -1,11 +1,16 @@
 /*
 Theme Name: ATX GD Theme
-Text Domain: atxgdtheme
-Version: 2.2
+Text Domain: atx-gd-theme
+Version: 3.53
 Description: ATX Game Designers static site theme.
-Tags: static, website
+Tags: hobby, one-column, custom-menu
 Author: Andrew Jonhardt
 Author URI: https://github.com/AndrewJDGalga
+Requires at least: 6.1
+Tested up to: 6.2
+Requires PHP: 5.6
+License: MIT
+License URI: https://opensource.org/license/mit/
 */
 
 :root {
@@ -30,6 +35,9 @@ Author URI: https://github.com/AndrewJDGalga
     --off-gold: #DBA40F;
     /*extra shading*/
     --shadow-grey: #2d2d2d;
+    /*header backing color extracted from image*/
+    --bleached-folder: #eee3cd;
+    --off-paper: #f7f0e5;
 }
 
 html {
@@ -45,6 +53,7 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    min-width: 320px;
 }
 
 .atxgd-header {
@@ -53,20 +62,47 @@ body {
     font-weight: 400;
 }
 
+#mobile-burger {
+    background-color: var(--deep-blue);
+    width: 42px;
+    height: 32px;
+    padding: 2px;
+    filter: drop-shadow(5px 5px 5px var(--shadow-grey));
+    box-shadow: inset 0.1em 0.1em 0.1em 0 var(--light-blue), inset -0.1em -0.1em 0.1em 0 var(--shadow-grey);
+}
+
+.mobile-burger_icon {
+    width: 80%;
+    height: 80%;
+    position: relative;
+    top: 2px;
+}
+
+.atxgd-header>#mobile-burger {
+    display: none;
+}
+
 .header_logo {
     width: 100%;
     min-height: 64px;
 }
 
-.header_backing-image {
-    text-align: center;
-    background-color: var(--fading-day-blue);
-    background-image: url('./assets/banner/ATX-GD-Web-banner-photo-onlyCrop1.webp');
+.full-width-backing {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 236px;
+    background-image: url('./assets/banner/ATX-GD-Web-banner-photo-onlyCrop1.webp'); 
     background-repeat: no-repeat;
     background-size: 100% auto;
+    z-index: -10;
+}
+
+.header_backing-image {
+    text-align: center;
     width: 100%;
     padding-bottom: 6%;
-}
+} 
 
 .header_home-wrapper > img {
     width: 30%;
@@ -81,6 +117,7 @@ body {
     justify-content: center;
     align-content: center;
     list-style: none;
+    visibility: visible;
 }
 
 /*drill down automatically generated nav menus*/
@@ -166,17 +203,58 @@ body {
 .atxgd-content {
     margin-left: 4px;
     margin-right: 4px;
+    margin-bottom: 16px;
 }
 
-@media screen and (max-width: 720px) {
-    .wp-nav-ul .current-menu-item a::before {
-        display: none;
+/*pointer rules = attempting to avoid stuck selection color on mobile*/
+@media (pointer:fine) {
+    #mobile-burger:hover {
+        color: var(--mud-brown);
+        background-color: var(--clear-sky-blue);
     }
 }
-
+@media (pointer:coarse){
+    #mobile-burger:active {
+        color: var(--mud-brown);
+        background-color: var(--clear-sky-blue);
+    }
+}
 @media screen and (orientation: portrait) {
     .header_backing-image {
         background-size: cover;
+    }
+}
+@media screen and (max-width: 590px) {
+    .atxgd-header>#mobile-burger {
+        display: block;
+        position: relative;
+        top: -48px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .header_nav>ul {
+        top: -64px;
+        background-color: var(--deep-blue);
+        flex-direction: column;
+        width: fit-content;
+        align-items: center;
+        justify-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        visibility: hidden;
+        padding: 4px;
+        gap: 16px;
+        filter: drop-shadow(5px 5px 5px var(--shadow-grey));
+        box-shadow: inset 0.1em 0.1em 0.1em 0 var(--light-blue), inset -0.1em -0.1em 0.1em 0 var(--shadow-grey);
+        z-index: 100;
+    }
+    .header_nav>ul>li>a {
+        background-color: transparent;
+        filter: none;
+        box-shadow: none;
+    }
+    .atxgd-content {
+        margin-top: -180px;
     }
 }
 
@@ -197,18 +275,29 @@ screen and (orientation: portrait)
         justify-content: left;
     }
 }
-
-@media screen and (min-width: 1080px)
+@media screen and (max-width: 720px) {
+    .wp-nav-ul .current-menu-item a::before {
+        display: none;
+    }
+}
+@media screen and (max-width: 1080px){
+    .header_backing-image {
+        background-image: linear-gradient(var(--bleached-folder), var(--off-paper), white);
+        background-image: url('./assets/banner/ATX-GD-Web-banner-photo-onlyCrop1.webp');
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        width: 100%;
+        padding-bottom: 6%;
+    }
+}
+@media screen and (min-width: 1100px)
 {
-    body {
+    .atxgd-header,
+    .atxgd-content,
+    .atxgd-footer {
         width: 1080px;
         margin-left: auto;
         margin-right: auto;
-    }
-
-    .atxgd-content {
-        margin-left: 0;
-        margin-right: 0;
     }
 
     .wp-nav-ul .current-menu-item a::before {
@@ -252,8 +341,14 @@ Published games list styling */
     padding: 4px;
 }
 
+.signed-game_attribution {
+    background-color: var(--off-gold);
+    color: var(--fading-day-blue);
+    padding: 4px;
+}
+
 .published-game_container.published-desktop {
-    display: none;
+    display: none; /*currently not needed, but kept just in case*/
 }
 
 .published-game_container.published-mobile {
@@ -383,3 +478,35 @@ textarea
     border: 4px solid var(--deep-blue);
 }
 
+/*__________________________________________________________
+Screenreaders compatability: https://wordpress.org/documentation/article/css/ 
+idk if this actually gets applied to anything*/
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+}
+ 
+.screen-reader-text:focus {
+    background-color: #eee;
+    clip: auto !important;
+    clip-path: none;
+    color: #444;
+    display: block;
+    font-size: 1em;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}

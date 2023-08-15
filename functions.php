@@ -3,4 +3,5 @@
         register_nav_menu( 'primary-menu', __('Primary Menu'));
     }
     add_action('init',  'register_primary_menu');
+    add_theme_support( 'title-tag' );
 ?>
