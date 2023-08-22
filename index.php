@@ -3,7 +3,7 @@
     <head>
         <meta charset="<?php bloginfo( 'charset' ); ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title><?php wp_title('|', true, 'right'); ?></title>
+        <title><?php bloginfo('name'); ?></title>
         <link rel="stylesheet" href="<?php echo esc_url(get_stylesheet_uri()); ?>">
         <!--Adobe Hightower + Bilo font link-->
         <link rel="stylesheet" href="https://use.typekit.net/fgr8upo.css">
@@ -42,7 +42,6 @@
 
         <article class="atxgd-content">
             <?php if(have_posts(  )) : while(have_posts(  )) : the_post(  );?>
-                <h1 style="display: none;"><?php the_title( ); ?></h1>
                 <?php the_content(); ?>
                 <?php wp_link_pages( ); ?>
                 <?php edit_post_link(); ?>
@@ -84,7 +83,7 @@
                     nav_menu.style.visibility = 'hidden';
                     menu_active = false;
                 }
-            });   
+            });
         </script>
     </body>
 </html>
