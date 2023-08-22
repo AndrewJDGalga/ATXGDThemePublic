@@ -1,7 +1,7 @@
 /*
 Theme Name: ATX GD Theme
 Text Domain: atx-gd-theme
-Version: 3.53
+Version: 3.581
 Description: ATX Game Designers static site theme.
 Tags: hobby, one-column, custom-menu
 Author: Andrew Jonhardt
@@ -35,6 +35,7 @@ License URI: https://opensource.org/license/mit/
     --off-gold: #DBA40F;
     /*extra shading*/
     --shadow-grey: #2d2d2d;
+    --protospiel-poster-tan: #fcf2c3;
     /*header backing color extracted from image*/
     --bleached-folder: #eee3cd;
     --off-paper: #f7f0e5;
@@ -316,6 +317,8 @@ Don't currently wish to target all a elements*/
     text-decoration: none;
     width: max-content;
     padding: 3px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 /*assign to quotes on page*/
@@ -436,10 +439,14 @@ Published games list styling */
 /*___________________________________________
 Carousel*/
 div.carousel-slider {
-    width: 80%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
+/*
+div.carousel-slider-outer {
+
+}*/
 
 /*_________________________________________
 WP Forms*/
@@ -509,4 +516,34 @@ idk if this actually gets applied to anything*/
     top: 5px;
     width: auto;
     z-index: 100000;
+}
+
+/*________________________________________________________________________
+Protospiel Styling*/
+.atxgd-list-style_hide {
+    list-style: none;
+}
+
+.atxgd-list-style_meeple {
+    list-style-image: url('./assets/banner/meeple_green.svg');
+}
+
+.atxgd-tan-background {
+    background-color: var(--protospiel-poster-tan);
+    padding: 8px;
+}
+
+.atxgd-blue-background>figure>img {
+    background-color: var(--deep-blue);
+    padding: 8px;
+}
+
+.atxgd-padding_8top-bottom {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.atxgd-padding_4top-bottom {
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
